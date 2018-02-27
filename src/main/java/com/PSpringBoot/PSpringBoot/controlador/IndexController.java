@@ -1,5 +1,7 @@
 package com.PSpringBoot.PSpringBoot.controlador;
 
+import com.PSpringBoot.PSpringBoot.dao.IPersonaDao;
+import com.PSpringBoot.PSpringBoot.entidades.Persona;
 import com.PSpringBoot.PSpringBoot.servicio.IIndexServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +18,13 @@ public class IndexController {
     
     @Autowired
     public IIndexServicio indexServicio;
+    @Autowired
+    public IPersonaDao ipersonaDao;
     
-     
+    @GetMapping("ListarPersona")
+     public Persona obtenerPersona(){
+         return ipersonaDao.findOne(new Long(1));
+     }
     
     @GetMapping("mensaje")
     public String mensaje(){
